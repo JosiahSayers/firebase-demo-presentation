@@ -29,10 +29,12 @@ export class SendMessageFormComponent {
         user: {
           name: user.displayName,
           photoUrl: user.photoURL
-        }
+        },
+        timestamp: new Date()
+      }).subscribe(res => {
+        this.messageForm.reset();
+        this.sending = false;
       });
-      this.messageForm.reset();
-      this.sending = false;
     });
   }
 

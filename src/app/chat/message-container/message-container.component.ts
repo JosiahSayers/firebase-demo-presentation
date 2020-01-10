@@ -1,7 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewRef } from '@angular/core';
 import { MessageDatabaseServiceService } from '../../services/message-database-service.service';
 import { Message } from '../../shared/models/message.model';
-import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-message-container',
@@ -12,10 +11,17 @@ export class MessageContainerComponent implements OnInit {
 
   constructor(private messagesService: MessageDatabaseServiceService) { }
 
-  private messages: Message[];
+  messages: Message[];
 
   ngOnInit() {
-    this.messagesService.getAll().subscribe(msgs => this.messages = msgs);
+    this.messagesService.getAll().subscribe(msgs => {
+      this.messages = msgs;
+      setTimeout(() => this.elementRef.scrollTop = this.elementRef.scrollHeight, 0);
+    });
+  }
+
+  get elementRef(): Element {
+    return document.querySelector('app-message-container');
   }
 
 }

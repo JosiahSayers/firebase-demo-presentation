@@ -1,34 +1,24 @@
 import { Injectable } from '@angular/core';
 import { Message } from '../shared/models/message.model';
-import { Observable, of } from 'rxjs';
+import { Observable, from } from 'rxjs';
+import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/firestore';
 
 @Injectable({
   providedIn: 'root'
 })
 export class MessageDatabaseServiceService {
 
-  messages: Message[] = [
-    {
-      text: 'This is a message',
-      user: {
-        name: 'user 1',
-        photoUrl: ''
-      }
-    },
-    {
-      text: 'Firebase is kewl!',
-      user: {
-        name: 'Me',
-        photoUrl: ''
-      }
-    }
-  ];
+  messagesCollection: AngularFirestoreCollection<Message> = this.firestore.collection('messages', ref => ref.orderBy('timestamp'));
+
+  constructor(
+    private firestore: AngularFirestore
+  ) { }
 
   getAll(): Observable<Message[]> {
-    return of(this.messages);
+    return this.messagesCollection.valueChanges();
   }
 
-  send(message: Message): void {
-    this.messages.push(message);
+  send(message: Message): Observable<any> {
+    return from(this.messagesCollection.add(message));
   }
 }
