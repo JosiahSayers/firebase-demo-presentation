@@ -1,26 +1,27 @@
 import { Injectable } from '@angular/core';
-import { ReplaySubject } from 'rxjs';
-import { User } from 'firebase';
+import { ReplaySubject, Observable } from 'rxjs';
+import { User, auth } from 'firebase/app';
+import { AngularFireAuth } from '@angular/fire/auth';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
 
-  user = new ReplaySubject<User>(1);
+  user: Observable<User>;
+
+  constructor(private afAuth: AngularFireAuth) {
+    this.user = this.afAuth.user;
+  }
 
   googleLogIn(): void {
-    const exampleUser = {
-      displayName: 'Josiah Sayers',
-      email: 'josiah.sayers15@gmail.com',
-      photoURL: '',
-      uid: '123456789'
-    };
-
-    this.user.next(exampleUser as User);
+    this.afAuth.auth.signInWithPopup(new auth.GoogleAuthProvider())
+    .then(userCredential => {
+      console.log('Signed in!');
+    });
   }
 
   logOut(): void {
-    this.user.next(undefined);
+    this.afAuth.auth.signOut();
   }
 }

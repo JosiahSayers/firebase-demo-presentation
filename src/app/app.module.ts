@@ -20,6 +20,9 @@ import {
 import { ToolbarComponent } from './shared/toolbar/toolbar.component';
 import { LoginComponent } from './auth/login/login.component';
 import { UserService } from './services/auth/user-service';
+import { AngularFireAuth, AngularFireAuthModule } from '@angular/fire/auth';
+import { AngularFireModule } from '@angular/fire';
+import { environment } from '../environments/environment';
 
 @NgModule({
   declarations: [
@@ -40,11 +43,14 @@ import { UserService } from './services/auth/user-service';
     MatFormFieldModule,
     MatInputModule,
     MatButtonModule,
-    MatIconModule
+    MatIconModule,
+    AngularFireModule.initializeApp(environment.FirebaseConfig),
+    AngularFireAuthModule
   ],
   providers: [
     MessageDatabaseServiceService,
-    UserService
+    UserService,
+    AngularFireAuth
   ],
   bootstrap: [AppComponent]
 })
