@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { ReplaySubject, Observable } from 'rxjs';
+import { Observable } from 'rxjs';
 import { User, auth } from 'firebase/app';
 import { AngularFireAuth } from '@angular/fire/auth';
 
@@ -16,9 +16,7 @@ export class UserService {
 
   googleLogIn(): void {
     this.afAuth.auth.signInWithPopup(new auth.GoogleAuthProvider())
-    .then(userCredential => {
-      console.log('Signed in!');
-    });
+    .then(userCredential => {});
   }
 
   logOut(): void {
