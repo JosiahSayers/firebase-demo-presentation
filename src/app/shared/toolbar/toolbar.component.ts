@@ -15,10 +15,8 @@ export class ToolbarComponent implements OnInit {
   constructor(private userService: UserService) { }
 
   ngOnInit() {
-    console.log('ngOnInit');
     this.userService.user.subscribe(user => {
       this.userImg = user?.photoURL ? user.photoURL : environment.UserPlaceholderImage;
-      console.log(this.userImg, environment);
       this.loggedIn = !!user;
     });
   }
