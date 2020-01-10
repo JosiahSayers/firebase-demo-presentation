@@ -9,6 +9,8 @@ app-message-container {
 app-send-message-form {
   width: 95vw;
   display: block;
-  padding: 1.5vh 2.5vw 0 2.5vw;
+  padding: 0 2.5vw;
   background: white;
+  position: fixed;
+  bottom: 0;
 }

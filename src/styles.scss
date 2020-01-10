@@ -9,3 +9,7 @@ body {
 }
 
 @import "../node_modules/@angular/material/prebuilt-themes/indigo-pink.css";
+
+.mat-form-field-wrapper {
+  padding: 1vh 0;
+}

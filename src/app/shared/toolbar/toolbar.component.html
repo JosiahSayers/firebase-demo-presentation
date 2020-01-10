@@ -1,5 +1,8 @@
 <mat-toolbar color="primary">
   <mat-toolbar-row>
     <span>Dev Chapter Chat</span>
+    <div class="user-image" (click)="logOut()">
+      <img *ngIf="loggedIn" src="{{userImg}}" title="Click to log out">
+    </div>
   </mat-toolbar-row>
 </mat-toolbar>

@@ -1,4 +1,6 @@
 <app-toolbar></app-toolbar>
 
-<app-message-container></app-message-container>
-<app-send-message-form></app-send-message-form>
+<app-message-container *ngIf="loggedIn"></app-message-container>
+<app-send-message-form *ngIf="loggedIn"></app-send-message-form>
+
+<app-login *ngIf="!loggedIn"></app-login>

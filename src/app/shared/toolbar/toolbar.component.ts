@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { UserService } from '../../services/auth/user-service';
+import { environment } from '../../../environments/environment';
 
 @Component({
   selector: 'app-toolbar',
@@ -7,9 +9,21 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ToolbarComponent implements OnInit {
 
-  constructor() { }
+  userImg: string;
+  loggedIn = false;
+
+  constructor(private userService: UserService) { }
 
   ngOnInit() {
+    console.log('ngOnInit');
+    this.userService.user.subscribe(user => {
+      this.userImg = user?.photoURL ? user.photoURL : environment.UserPlaceholderImage;
+      console.log(this.userImg, environment);
+      this.loggedIn = !!user;
+    });
   }
 
+  logOut(): void {
+    this.userService.logOut();
+  }
 }

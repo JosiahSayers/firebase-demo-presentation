@@ -5,6 +5,8 @@
     <input matInput formControlName="text">
   </mat-form-field>
 
-  <button type="submit" [disabled]="!inputText || sending">send</button>
+  <button mat-raised-button color="primary" type="submit" [disabled]="!inputText || sending" [class.spinner]="sending">
+    Send
+  </button>
 
 </form>

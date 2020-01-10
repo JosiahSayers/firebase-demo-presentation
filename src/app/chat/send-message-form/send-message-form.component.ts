@@ -32,7 +32,7 @@ export class SendMessageFormComponent {
         photoUrl: ''
       }
     });
-    this.sending = false;
+    setTimeout(() => this.sending = false, 500);
   }
 
   get inputText(): string {

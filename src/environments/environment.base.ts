@@ -1,4 +1,6 @@
-const firebaseConfig = {
+const production = false;
+
+const FirebaseConfig = {
   apiKey: 'AIzaSyBwmWk7HZ0nqSuf1AgKm4-EDiR-aAaeonQ',
   authDomain: 'fir-dev-chapter.firebaseapp.com',
   databaseURL: 'https://fir-dev-chapter.firebaseio.com',
@@ -9,6 +11,16 @@ const firebaseConfig = {
   measurementId: 'G-S740GFS6LJ'
 };
 
+const GoogleSignInButton = {
+  normal: '/assets/images/google-login/btn_google_signin_dark_normal_web@2x.png',
+  pressed: '/assets/images/google-login/btn_google_signin_dark_pressed_web@2x.png'
+};
+
+const UserPlaceholderImage = '/assets/images/profile_placeholder.png';
+
 export const baseEnvironment = {
-  firebaseConfig
+  production,
+  FirebaseConfig,
+  GoogleSignInButton,
+  UserPlaceholderImage
 };
