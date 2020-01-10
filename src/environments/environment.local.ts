@@ -1,6 +1,6 @@
 import { baseEnvironment } from './environment.base';
 
-const production = true;
+const production = false;
 
 export const environment = {
   ...baseEnvironment,

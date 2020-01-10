@@ -1,0 +1,14 @@
+app-message-container {
+  width: 90vw;
+  height: 78vh;
+  display: block;
+  margin: 0 auto;
+  overflow-y: auto;
+}
+
+app-send-message-form {
+  width: 95vw;
+  display: block;
+  padding: 1.5vh 2.5vw 0 2.5vw;
+  background: white;
+}

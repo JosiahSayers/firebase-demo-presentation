@@ -1,0 +1,10 @@
+<form [formGroup]="messageForm" (ngSubmit)="onSubmit()">
+
+  <mat-form-field appearance="outline">
+    <mat-label>Enter a message</mat-label>
+    <input matInput formControlName="text">
+  </mat-form-field>
+
+  <button type="submit" [disabled]="!inputText || sending">send</button>
+
+</form>
