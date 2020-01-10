@@ -18,11 +18,6 @@ export class SendMessageFormComponent {
 
   sending = false;
 
-  onSubmit(): void {
-    this.sendMessage();
-    this.messageForm.reset();
-  }
-
   sendMessage() {
     this.sending = true;
     this.messageService.send({
@@ -32,6 +27,7 @@ export class SendMessageFormComponent {
         photoUrl: ''
       }
     });
+    this.messageForm.reset();
     setTimeout(() => this.sending = false, 500);
   }
 
