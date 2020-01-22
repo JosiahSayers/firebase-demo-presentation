@@ -58,7 +58,7 @@ const firebaseConfig = {
     MatIconModule,
     AngularFireModule.initializeApp(firebaseConfig),
     AngularFireAuthModule,
-    AngularFirestoreModule
+    AngularFirestoreModule.enablePersistence()
   ],
   providers: [
     MessageDatabaseServiceService,
