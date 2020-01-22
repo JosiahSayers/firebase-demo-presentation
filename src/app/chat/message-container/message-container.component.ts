@@ -15,7 +15,14 @@ export class MessageContainerComponent implements OnInit {
   private messages: Message[];
 
   ngOnInit() {
-    this.messagesService.getAll().subscribe(msgs => this.messages = msgs);
+    this.messagesService.getAll().subscribe(msgs => {
+      this.messages = msgs;
+      setTimeout(() => this.elementRef.scrollTop = this.elementRef.scrollHeight, 0);
+    });
+  }
+
+  get elementRef(): Element {
+    return document.querySelector('app-message-container');
   }
 
 }

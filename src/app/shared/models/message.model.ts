@@ -4,4 +4,5 @@ export interface Message {
     name: string;
     photoUrl: string;
   };
+  timestamp: Date;
 }

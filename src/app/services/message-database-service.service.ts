@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Message } from '../shared/models/message.model';
 import { Observable, of } from 'rxjs';
+import { delay } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -13,14 +14,16 @@ export class MessageDatabaseServiceService {
       user: {
         name: 'user 1',
         photoUrl: ''
-      }
+      },
+      timestamp: new Date()
     },
     {
       text: 'Firebase is kewl!',
       user: {
         name: 'Me',
         photoUrl: ''
-      }
+      },
+      timestamp: new Date()
     }
   ];
 
@@ -28,7 +31,7 @@ export class MessageDatabaseServiceService {
     return of(this.messages);
   }
 
-  send(message: Message): void {
-    this.messages.push(message);
+  send(message: Message): Observable<any> {
+    return of(this.messages.push(message)).pipe(delay(300));
   }
 }

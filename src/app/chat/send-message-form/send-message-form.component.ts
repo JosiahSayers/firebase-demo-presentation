@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
 import { MessageDatabaseServiceService } from '../../services/message-database-service.service';
+import { UserService } from '../../services/auth/user-service';
 
 @Component({
   selector: 'app-send-message-form',
@@ -10,7 +11,9 @@ import { MessageDatabaseServiceService } from '../../services/message-database-s
 export class SendMessageFormComponent {
 
   constructor(
-    private messageService: MessageDatabaseServiceService) { }
+    private messageService: MessageDatabaseServiceService,
+    private userService: UserService
+  ) { }
 
   messageForm = new FormGroup({
     text: new FormControl('')
@@ -20,15 +23,19 @@ export class SendMessageFormComponent {
 
   sendMessage() {
     this.sending = true;
-    this.messageService.send({
-      text: this.inputText,
-      user: {
-        name: 'Test User',
-        photoUrl: ''
-      }
+    this.userService.user.subscribe(user => {
+      this.messageService.send({
+        text: this.inputText,
+        user: {
+          name: user.displayName,
+          photoUrl: user.photoURL
+        },
+        timestamp: new Date()
+      }).subscribe(res => {
+        this.messageForm.reset();
+        this.sending = false;
+      });
     });
-    this.messageForm.reset();
-    setTimeout(() => this.sending = false, 500);
   }
 
   get inputText(): string {
