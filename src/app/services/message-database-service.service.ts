@@ -18,7 +18,7 @@ export class MessageDatabaseServiceService {
       timestamp: new Date()
     },
     {
-      text: 'Firebase is kewl!',
+      text: 'Firebase in the house!',
       user: {
         name: 'Me',
         photoUrl: ''
