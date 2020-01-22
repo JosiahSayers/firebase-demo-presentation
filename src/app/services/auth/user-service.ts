@@ -15,8 +15,7 @@ export class UserService {
   }
 
   googleLogIn(): void {
-    this.afAuth.auth.signInWithPopup(new auth.GoogleAuthProvider())
-    .then(userCredential => {});
+    this.afAuth.auth.signInWithPopup(new auth.GoogleAuthProvider());
   }
 
   logOut(): void {

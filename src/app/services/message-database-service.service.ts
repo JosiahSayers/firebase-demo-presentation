@@ -8,7 +8,8 @@ import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/fire
 })
 export class MessageDatabaseServiceService {
 
-  messagesCollection: AngularFirestoreCollection<Message> = this.firestore.collection('messages', ref => ref.orderBy('timestamp'));
+  messagesCollection: AngularFirestoreCollection<Message> =
+    this.firestore.collection('messages', ref => ref.orderBy('timestamp'));
 
   constructor(
     private firestore: AngularFirestore
